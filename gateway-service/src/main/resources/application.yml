@@ -1,0 +1,57 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: gateway-service
+
+  cloud:
+    consul:
+      host: localhost
+      port: 8500
+
+      discovery:
+        enabled: true
+        register: true
+        service-name: api-gateway
+        prefer-ip-address: true   # health checks in consul config is failing as its taking Saranas_Vivo hostname, other ways: hardcode discovery.ip-address or discovery.hostname.
+
+      config:
+        enabled: false
+        format: yaml
+        prefix: config
+        default-context: application
+
+    gateway:
+      discovery:
+        locator:
+          enabled: true   # This automatically creates routes, not production-safe
+          lower-case-service-id: true
+
+      routes:
+        - id: profile-service
+          uri: lb://profile-service
+          predicates:
+            - Path=/api/profile/**
+          filters:
+            - StripPrefix=2   # Incoming Rqst: /api/profile/users After Gateway: /users
+
+        - id: show-service
+          uri: lb://show-service
+          predicates:
+            - Path=/api/show/**
+          filters:
+            - StripPrefix=2
+
+        - id: booking-service
+          uri: lb://booking-service
+          predicates:
+            - Path=/api/booking/**
+          filters:
+            - StripPrefix=2
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
