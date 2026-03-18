@@ -1,6 +1,14 @@
 server:
   port: 8080
 
+logging:
+  level:
+    root: INFO
+    org.springframework.cloud.gateway: DEBUG  # shows route matching
+    org.springframework.web: DEBUG            # controller mapping
+    reactor.netty: DEBUG                      # shows request flow
+    org.springframework.cloud.gateway.handler.RoutePredicateHandlerMapping: TRACE   # Route matched: profile-service or Not matched
+
 spring:
   application:
     name: gateway-service
@@ -25,7 +33,7 @@ spring:
     gateway:
       discovery:
         locator:
-          enabled: true   # This automatically creates routes, not production-safe
+          enabled: false   # This automatically creates routes, not production-safe
           lower-case-service-id: true
 
       routes:
@@ -54,4 +62,5 @@ management:
   endpoints:
     web:
       exposure:
-        include: health,info
+        # include: health,info
+        include: "*"
