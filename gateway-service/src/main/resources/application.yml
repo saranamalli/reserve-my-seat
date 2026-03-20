@@ -51,6 +51,13 @@ spring:
           filters:
             - StripPrefix=2
 
+        - id: homepage-service
+          uri: lb://homepage-service
+          predicates:
+            - Path=/api/home/**
+          filters:
+            - StripPrefix=2
+
         - id: booking-service
           uri: lb://booking-service
           predicates:
