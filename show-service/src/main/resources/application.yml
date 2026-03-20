@@ -1,0 +1,36 @@
+server:
+    port: 8082
+
+spring:
+    application:
+        name: show-service
+
+    datasource:
+        url: jdbc:mysql://localhost:3306/show_db
+        username: root
+        password: root
+
+    jpa:
+        hibernate:
+            ddl-auto: none
+        show-sql: true
+
+    cloud:
+        consul: 
+            host: localhost
+            port: 8500
+
+            discovery:
+                enabled: true
+                register: true
+                service-name: show-service
+                prefer-ip-address: true   # health checks in consul config is failing as its taking Saranas_Vivo hostname, other ways: hardcode discovery.ip-address or discovery.hostname.
+
+            config:
+                enabled: false
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
