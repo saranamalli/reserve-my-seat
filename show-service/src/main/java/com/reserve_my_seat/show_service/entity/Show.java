@@ -19,8 +19,9 @@ public class Show {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
-    private Movie movie;
+    private Long movieId;
+
+    private String movieTitle;
 
     @ManyToOne
     private Screen screen;

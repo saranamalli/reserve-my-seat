@@ -1,4 +1,4 @@
-package com.reserve_my_seat.show_service.entity;
+package com.reserve_my_seat.homepage_service.entity;
 
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -21,5 +21,5 @@ public class Movie {
     private int duration;
     private String genre;
 
-    // active, rating,
+    // active, user ratings, comments, trailer videos, posters, about movie, cast, crew.
 }

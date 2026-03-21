@@ -8,7 +8,7 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 
 public interface ShowRepository extends JpaRepository<Show, Long> {
-    @Query("select sh from Show sh join fetch sh.movie join fetch sh.screen join fetch sh.screen.theatre where sh.movie.id=:movieId")
+    @Query("select sh from Show sh join fetch sh.screen join fetch sh.screen.theatre where sh.movieId=:movieId")
     List<Show> findByMovieId(@Param("movieId") Long movieId);
 
 //    @Query("select sh.* from shows sh where sh.")
