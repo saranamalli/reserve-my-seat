@@ -1,7 +1,12 @@
 import "./App.css";
+import AppRoutes from "./AppRoutes";
 
 function App() {
-  return <div className="text-center text-2xl mt-10">Reserve My Seat</div>;
+  return (
+    <>
+      <AppRoutes />
+    </>
+  );
 }
 
 export default App;

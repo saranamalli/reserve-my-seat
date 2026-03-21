@@ -15,8 +15,8 @@
   --shadow:
     rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
 
-  --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --heading: system-ui, 'Segoe UI', Roboto, sans-serif;
+  --sans: system-ui, "Segoe UI", Roboto, sans-serif;
+  --heading: system-ui, "Segoe UI", Roboto, sans-serif;
   --mono: ui-monospace, Consolas, monospace;
 
   font: 18px/145% var(--sans);
@@ -34,7 +34,7 @@
   }
 }
 
-@media (prefers-color-scheme: dark) {
+@media (prefers-color-scheme: light) {
   :root {
     --text: #9ca3af;
     --text-h: #f3f4f6;
@@ -55,11 +55,10 @@
 }
 
 #root {
-  width: 1126px;
+  width: 93%;
   max-width: 100%;
   margin: 0 auto;
   text-align: center;
-  border-inline: 1px solid var(--border);
   min-height: 100svh;
   display: flex;
   flex-direction: column;
@@ -112,4 +111,40 @@ code {
   line-height: 135%;
   padding: 4px 8px;
   background: var(--code-bg);
+}
+
+.nav-link {
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: transparent;
+  text-decoration: none;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.nav-link:hover,
+.nav-link.active {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+@media (prefers-color-scheme: dark) {
+  .navbar {
+    border-color: rgba(14, 23, 42, 0.28);
+    background-color: rgba(248, 250, 252, 0.9);
+    box-shadow: 0 10px 30px rgba(15, 23, 42, 0.15);
+  }
+
+  .nav-link {
+    color: #0f172a;
+    border-color: rgba(255, 255, 255, 0.2);
+    background-color: transparent;
+  }
+
+  .nav-link:hover,
+  .nav-link.active {
+    background-color: rgba(15, 23, 42, 0.08);
+  }
 }
