@@ -3,34 +3,37 @@ import ReserveSeatCTA from "../components/Icon";
 
 export default function Navbar() {
   return (
-    <div className="mt-[10px] z-50">
-      <nav className="navbar flex p-[10px] items-center gap-6 rounded-full border border-white/20 bg-slate-950/75 shadow-[0_10px_30px_rgba(0,0,0,0.35)] backdrop-blur-sm">
-        <div className="ml-[10px]">
+    <div className="mt-2.5 z-50">
+      <nav className="navbar flex items-center justify-between p-2 rounded-full border border-(--border) bg-(--bg) shadow-(--shadow) backdrop-blur-sm">
+        <div className="ml-2.5">
           <ReserveSeatCTA />
         </div>
 
-        <div className="ml-[5%] mr-auto flex items-center gap-4 text-sm">
-          <Link to="/" className="nav-link">
-            Work
+        <div className="ml-2 mr-auto flex items-center gap-2 text-sm">
+          <Link to="/movies" className="nav-link">
+            Movies
           </Link>
-          <Link to="/about" className="nav-link ml-[1em]">
-            About
-          </Link>
-          <Link to="/play" className="nav-link ml-[1em]">
-            Playground
-          </Link>
-          <Link to="/resources" className="nav-link ml-[1em]  ">
-            Resource
+          <Link to="/live-events" className="nav-link">
+            Concerts
           </Link>
         </div>
 
-        <div className="mr-[0] rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-xs font-medium text-white flex items-center">
+        <div className="mr-2 flex items-center gap-2 text-sm">
+          <Link to="/login" className="nav-link">
+            Login
+          </Link>
+          <Link to="/register" className="nav-link">
+            Register
+          </Link>
+        </div>
+
+        <div className="mr-0 flex items-center border rounded-full border-(--border)">
           <img
             src="/default-profile.jpeg"
             alt="Profile"
-            className="h-[50px] rounded-full object-cover border border-white/30"
+            className="w-12.5 h-12.5 bg-gray-400 rounded-full object-cover border overflow-hidden"
           />
-          <span className="p-[5px]">ihyaet@gmail.com</span>
+          <p className="p-1.25 text-xs font-medium">Mallikarjuna Sarana</p>
         </div>
       </nav>
     </div>

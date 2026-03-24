@@ -1,54 +1,66 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+@theme {
+  --color-accent: var(--accent);
+  --color-accent-bg: var(--accent-bg);
+  --color-accent-border: var(--accent-border);
+  --color-text-main: var(--text);
+  --color-text-heading: var(--text-h);
+  --color-app-bg: var(--bg);
+}
 
 :root {
-  --text: #6b6375;
-  --text-h: #08060d;
-  --bg: #fff;
-  --border: #e5e4e7;
-  --code-bg: #f4f3ec;
-  --accent: #aa3bff;
-  --accent-bg: rgba(170, 59, 255, 0.1);
-  --accent-border: rgba(170, 59, 255, 0.5);
-  --social-bg: rgba(244, 243, 236, 0.5);
+  /* --- LIGHT THEME (Default) --- */
+  --bg: #ffffff;
+  --text: #4b5563; /* Balanced Gray 600 */
+  --text-h: #1a1a1a; /* High contrast for headings */
+  --border: #e5e7eb; /* Subtle gray border */
+
+  /* Cinema Red Palette */
+  --accent: #e50914;
+  --accent-bg: rgba(229, 9, 20, 0.08);
+  --accent-border: rgba(229, 9, 20, 0.3);
+
+  --code-bg: #f3f4f6;
+  --social-bg: rgba(0, 0, 0, 0.05);
   --shadow:
     rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
 
+  /* Typography */
   --sans: system-ui, "Segoe UI", Roboto, sans-serif;
-  --heading: system-ui, "Segoe UI", Roboto, sans-serif;
-  --mono: ui-monospace, Consolas, monospace;
-
   font: 18px/145% var(--sans);
   letter-spacing: 0.18px;
   color-scheme: light dark;
   color: var(--text);
   background: var(--bg);
-  font-synthesis: none;
+
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 
   @media (max-width: 1024px) {
     font-size: 16px;
   }
 }
 
-@media (prefers-color-scheme: light) {
+@media (prefers-color-scheme: dark) {
   :root {
-    --text: #9ca3af;
-    --text-h: #f3f4f6;
-    --bg: #16171d;
-    --border: #2e303a;
-    --code-bg: #1f2028;
-    --accent: #c084fc;
-    --accent-bg: rgba(192, 132, 252, 0.15);
-    --accent-border: rgba(192, 132, 252, 0.5);
-    --social-bg: rgba(47, 48, 58, 0.5);
-    --shadow:
-      rgba(0, 0, 0, 0.4) 0 10px 15px -3px, rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
+    /* --- DARK THEME --- */
+    --bg: #111111; /* Deep Cinema Black */
+    --text: #9ca3af; /* Gray 400 */
+    --text-h: #f9fafb; /* Off-white headings */
+    --border: #262626; /* Dark gray border */
+
+    /* Adjusted Red for Dark Mode */
+    --accent: #ff0f1b97; /* Slightly more vibrant for dark backgrounds */
+    --accent-bg: rgba(255, 15, 27, 0.15);
+    --accent-border: rgba(255, 15, 27, 0.5);
+
+    --code-bg: #1f1f1f;
+    --social-bg: rgba(255, 255, 255, 0.05);
+    --shadow: rgba(0, 0, 0, 0.5) 0 10px 25px -5px;
   }
 
+  /* Fix for icons if they are dark by default */
   #social .button-icon {
     filter: invert(1) brightness(2);
   }
@@ -116,16 +128,25 @@ code {
 .nav-link {
   padding: 0.25rem 0.75rem;
   border-radius: 9999px;
-  color: #ffffff;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  background: transparent;
+  color: var(--text);
   text-decoration: none;
-  transition:
-    background-color 0.2s ease,
-    color 0.2s ease;
+  font-weight: 500;
+  transition: all 0.2s ease;
 }
 
-.nav-link:hover,
+.nav-link:hover {
+  background-color: var(--accent-bg);
+  color: var(--accent);
+}
+
+.navbar {
+  /* This ensures the navbar always follows your theme variables */
+  background-color: var(--bg);
+  border-color: var(--border);
+  box-shadow: var(--shadow);
+}
+
+/* .nav-link:hover,
 .nav-link.active {
   background-color: rgba(255, 255, 255, 0.2);
 }
@@ -147,4 +168,4 @@ code {
   .nav-link.active {
     background-color: rgba(15, 23, 42, 0.08);
   }
-}
+} */
