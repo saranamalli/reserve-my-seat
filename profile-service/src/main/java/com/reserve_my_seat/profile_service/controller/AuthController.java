@@ -1,5 +1,8 @@
 package com.reserve_my_seat.profile_service.controller;
 
+import com.reserve_my_seat.profile_service.dto.UserDetailsForAuth;
+import com.reserve_my_seat.profile_service.dto.UserToken;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -36,10 +39,11 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public String loginUser(@RequestBody User request) {
+    public ResponseEntity<UserToken> loginUser(@RequestBody User request) {
         logger.info("Received request to Login User {}", request);
         User user = userService.login(request.getEmail(), request.getPassword());
-        return jwtUtils.generateToken(user.getEmail(), user.getName());
+        String token = jwtUtils.generateToken(user.getEmail(), user.getName());
+        return ResponseEntity.ok(new UserToken(new UserDetailsForAuth(user.getName(), user.getEmail()), token));
     }   
 
     @GetMapping("/test-protected-route")
