@@ -65,6 +65,20 @@ spring:
           filters:
             - StripPrefix=2
 
+      globalcors:
+        cors-configurations:
+          '[/**]':
+              allowedOrigins: "http://localhost:5173"
+              allowedMethods:
+                - GET
+                - POST
+                - PUT
+                - DELETE
+                - PATCH
+                - OPTIONS
+              allowedHeaders: "*"
+              allowCredentials: true
+
 management:
   endpoints:
     web:
