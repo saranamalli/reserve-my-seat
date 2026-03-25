@@ -3,6 +3,7 @@ import { useAuthStore } from "../store/authStore";
 import { useNavigate } from "react-router-dom";
 import api from "../api/axios";
 import { Modal } from "../components/Modal";
+import { useToastStore } from "../store/toastStore";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -12,6 +13,7 @@ const Login = () => {
 
   const login = useAuthStore((state) => state.login);
   const navigate = useNavigate();
+  const { addToast } = useToastStore();
 
   const validateEmail = (email: string): boolean => {
     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -44,9 +46,11 @@ const Login = () => {
       console.log("login response", res);
       login(res.data);
       navigate("/");
+      addToast("Login Successful!!", "success");
     } catch (err) {
-      console.error("Login Failed !!!", err);
-      // Optionally set a general error
+      const message = "Login failed!!!";
+      addToast(message, "error");
+      console.error(message, err);
     }
   };
 
