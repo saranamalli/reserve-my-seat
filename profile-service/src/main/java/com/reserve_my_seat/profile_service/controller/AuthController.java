@@ -1,7 +1,10 @@
 package com.reserve_my_seat.profile_service.controller;
 
-import com.reserve_my_seat.profile_service.dto.UserDetailsForAuth;
-import com.reserve_my_seat.profile_service.dto.UserToken;
+import com.reserve_my_seat.profile_service.dto.request.UserDetailsForAuthReq;
+import com.reserve_my_seat.profile_service.dto.response.UserDetailsForAuthRes;
+import com.reserve_my_seat.profile_service.dto.request.UserDetailsForRegistrationReq;
+import com.reserve_my_seat.profile_service.dto.response.UserTokenRes;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -33,17 +36,18 @@ public class AuthController {
     private final JwtUtils jwtUtils;
 
     @PostMapping("/register")
-    public User registerUser(@RequestBody User user) {
-        logger.info("Received request to Register User {}", user);
-        return userService.register(user);
+    public ResponseEntity<String> registerUser(@Valid @RequestBody UserDetailsForRegistrationReq userDetails) {
+        logger.info("Received request to Register User: {}", userDetails.name());
+        userService.register(userDetails);
+        return ResponseEntity.ok("User registered Successfully");
     }
 
     @PostMapping("/login")
-    public ResponseEntity<UserToken> loginUser(@RequestBody User request) {
-        logger.info("Received request to Login User {}", request);
-        User user = userService.login(request.getEmail(), request.getPassword());
+    public ResponseEntity<UserTokenRes> loginUser(@Valid @RequestBody UserDetailsForAuthReq request) {
+        logger.info("Received request to Login User {}", request.email());
+        User user = userService.login(request.email(), request.password());
         String token = jwtUtils.generateToken(user.getEmail(), user.getName());
-        return ResponseEntity.ok(new UserToken(new UserDetailsForAuth(user.getName(), user.getEmail()), token));
+        return ResponseEntity.ok(new UserTokenRes(new UserDetailsForAuthRes(user.getName(), user.getEmail()), token));
     }   
 
     @GetMapping("/test-protected-route")

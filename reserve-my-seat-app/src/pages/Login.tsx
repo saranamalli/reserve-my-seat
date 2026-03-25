@@ -22,7 +22,8 @@ const Login = () => {
     return password.length > 9;
   };
 
-  const handleLogin = async () => {
+  const handleLogin = async (e: React.SubmitEvent) => {
+    e.preventDefault();
     setEmailError("");
     setPasswordError("");
 
@@ -52,7 +53,10 @@ const Login = () => {
   return (
     <>
       <Modal isOpen={true} onClose={() => navigate("/home")} title="Login">
-        <div className="max-w-md mx-auto mt-7 space-y-4">
+        <form
+          onSubmit={handleLogin}
+          className="max-w-md mx-auto mt-7 space-y-4"
+        >
           <div className="">
             <label htmlFor="email">Email</label>
             <input
@@ -62,6 +66,7 @@ const Login = () => {
               id="email"
               type="email"
               placeholder="Enter your email"
+              autoComplete="username"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
@@ -78,6 +83,7 @@ const Login = () => {
               }`}
               id="password"
               type="password"
+              autoComplete="current-password"
               placeholder="Enter your password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
@@ -88,12 +94,12 @@ const Login = () => {
           </div>
 
           <button
-            onClick={handleLogin}
+            type="submit"
             className="bg-(--accent) hover:brightness-110 transition duration-200 text-white px-4 py-2 w-full rounded-md font-medium"
           >
             Login
           </button>
-        </div>
+        </form>
       </Modal>
     </>
   );
