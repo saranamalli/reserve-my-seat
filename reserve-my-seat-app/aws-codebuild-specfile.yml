@@ -5,16 +5,19 @@ phases:
     runtime-versions:
       nodejs: 18
     commands:
-      - echo Installing dependencies...
+      - ls -a
+      - cd reserve-my-seat-app
+      - echo "Installing dependencies..."
       - npm ci --legacy-peer-deps
 
   build:
     commands:
-      - echo Building react app...
+      - echo "Building react app..."
+      - cd reserve-my-seat-app
       - npm run build
 
 artifacts:
   files:
     - "**/*"
-  base-directory: dist
+  base-directory: reserve-my-seat-app/dist
   discard-paths: no
