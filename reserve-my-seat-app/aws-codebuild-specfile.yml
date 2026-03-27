@@ -16,8 +16,13 @@ phases:
       - echo "Building react app..."
       - npm run build
 
+  post_build:
+    commands:
+      - ls -R reserve-my-seat-app/dist
+      - ls -a
+
 artifacts:
   files:
     - "**/*"
-  base-directory: dist
+  base-directory: reserve-my-seat-app/dist
   discard-paths: no
