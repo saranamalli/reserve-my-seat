@@ -3,7 +3,7 @@ version: 0.2
 phases:
   install:
     runtime-versions:
-      nodejs: 18
+      nodejs: 22
     commands:
       - ls -a
       - cd reserve-my-seat-app
@@ -12,12 +12,12 @@ phases:
 
   build:
     commands:
+      - ls -a
       - echo "Building react app..."
-      - cd reserve-my-seat-app
       - npm run build
 
 artifacts:
   files:
     - "**/*"
-  base-directory: reserve-my-seat-app/dist
+  base-directory: dist
   discard-paths: no
