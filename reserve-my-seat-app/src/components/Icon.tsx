@@ -30,8 +30,8 @@ export default function ReserveSeatCTA() {
   }, [controls]);
 
   return (
-    <div className="flex justify-center items-center h-[50px]">
-      <svg viewBox="0 0 400 150" className="w-[140px] cursor-pointer">
+    <div className="flex justify-center items-center h-12.5">
+      <svg viewBox="0 0 400 150" className="w-35 cursor-pointer">
         {/* SCREEN */}
         <motion.rect
           x="10"
@@ -39,10 +39,10 @@ export default function ReserveSeatCTA() {
           width="380"
           height="130"
           rx="20"
-          fill="#000000"
+          fill="#4a4a4a"
           variants={{
             flicker: {
-              opacity: [1, 0.6, 1, 0.6, 1, 0.6, 1],
+              opacity: [0, 0.4, 0, 0.4, 0, 0.4, 0],
               transition: {
                 duration: 4,
                 ease: "easeInOut",
@@ -211,7 +211,7 @@ export default function ReserveSeatCTA() {
           y="85"
           textAnchor="middle"
           fill="#ffffff"
-          className="text-[35px] font-[600]"
+          className="text-[35px] font-semibold"
           variants={{
             showText: {
               opacity: 1,

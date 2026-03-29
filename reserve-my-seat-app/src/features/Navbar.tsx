@@ -9,6 +9,8 @@ export default function Navbar() {
           <ReserveSeatCTA />
         </div>
 
+        <div className="ml-2 text-sm font-medium">📍 Bangalore</div>
+
         <div className="ml-2 mr-auto flex items-center gap-2 text-sm">
           <Link to="/movies" className="nav-link">
             Movies
