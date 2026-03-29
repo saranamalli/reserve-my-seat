@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useAuthStore } from "../store/authStore";
 import { useNavigate } from "react-router-dom";
-import api from "../api/axios";
+import api from "../utils/axios";
 import { Modal } from "../components/Modal";
 import { useToastStore } from "../store/toastStore";
 
@@ -46,7 +46,7 @@ const Login = () => {
       console.log("login response", res);
       login(res.data);
       navigate("/");
-      addToast("Login Successful!!", "success");
+      addToast("Login Successful!!", "success"); //TODO: Once login redirect to previous page if redirectUrl is present.
     } catch (err) {
       const message = "Login failed!!!";
       addToast(message, "error");

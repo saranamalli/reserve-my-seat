@@ -1,5 +1,5 @@
 import { useState, type ChangeEvent } from "react";
-import api from "../api/axios";
+import api from "../utils/axios";
 import { useNavigate } from "react-router-dom";
 import { Modal } from "../components/Modal";
 

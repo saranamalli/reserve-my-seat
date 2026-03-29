@@ -15,18 +15,12 @@ export default function AppRoutes() {
       <Layout>
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/home" element={<Home />} />
 
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
 
-          <Route
-            path="/movie/:id"
-            element={
-              <PrivateRoute>
-                <MovieDetails />
-              </PrivateRoute>
-            }
-          />
+          <Route path="/movie/:id" element={<MovieDetails />} />
           <Route
             path="/theatre/:movieId"
             element={

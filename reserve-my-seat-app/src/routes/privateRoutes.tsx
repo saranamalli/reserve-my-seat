@@ -5,7 +5,7 @@ export default function PrivateRoute({ children }: any) {
   const token = useAuthStore((state) => state.token);
 
   if (!token) {
-    return <Navigate to="\login" />;
+    return <Navigate to="\login" />; //TODO: Add Redirect Url.
   }
 
   return children;
